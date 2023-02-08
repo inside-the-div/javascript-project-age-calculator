@@ -15,16 +15,20 @@
             <div id="ageInput" class="container-feild">             
                 <div class="input-group">
                     <label for="birthDate" class="input-label">Birth Date:</label>
-                    <input placeholder="From Date" type="date" name="bill" min="0" id="birthDate" class="input-feild">
+                    <div>
+                        <input placeholder="From Date" type="date" name="bill" min="0" id="birthDate" class="input-feild">
+                    </div>
                 </div>
                 <div class="input-group">
                     <label for="toDate" class="input-label">To Date:</label>
-                    <input placeholder="To Date" type="date" name="tips" min ="0" id="toDate" max="100" class="input-feild">
+                    <div>
+                        <input placeholder="To Date" type="date" name="tips" min ="0" id="toDate" max="100" class="input-feild">
+                    </div>
                 </div>
                 
                 <div class="input-group">
-                    <button id="btnReset" class="btn btn-reset">Reset</button>
-                    <button id="btnCalculate" class="btn btn-calculate">Calculate</button>
+                    <button id="btnReset" onclick="ResetFunction()" class="btn btn-reset">Reset</button>
+                    <button id="btnCalculate" onclick="CalculateResult()" class="btn btn-calculate">Calculate</button>
                 </div>        
             </div>
 
@@ -38,19 +42,13 @@
                     <h2>Result</h2>
                     <table class="output-table">
                         <tr>
-                            <td>Year</td>
-                            <td>:</td>
-                            <td><span id="resultYear">00</span></td>
+                            <td><span id="resultYear">0 Year</span></td>
                         </tr>
                         <tr>
-                            <td>Month</td>
-                            <td>:</td>
-                            <td><span id="resultMonth">00</span></td>
+                            <td><span id="resultMonth">0 Month</span></td>
                         </tr>
                         <tr>
-                            <td>Day</td>
-                            <td>:</td>
-                            <td><span id="resultDay">00</span></td>
+                            <td><span id="resultDay">0 Day</span></td>
                         </tr>                   
                     </table>
                  </div>                 
@@ -59,6 +57,9 @@
         <div class="author-intro">
             <p>Develop By <i><a href="#">Kamrul Hasan</a></i> & Powered By <i><a href="#">Bx-Coder</a></i></p>
         </div> 
-    </div>    
+    </div>
+    <script src="JS/main.js">
+
+    </script>  
 </body>
 </html>
