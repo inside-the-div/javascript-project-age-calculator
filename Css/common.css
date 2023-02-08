@@ -41,6 +41,7 @@
     justify-content: space-between;
     width: 100%;    
     margin: 5px auto;
+    position: relative;
     padding: 10px 5px;
     border-bottom: 1px solid rgb(222, 228, 228);
 }
@@ -185,5 +186,11 @@
 .error-message{
     display: block;
     color: red;
-    font-size: 10px;
+    font-size: 11px;
+    font-style: italic;
+    font-weight: 800;
+    margin: 5px 5px 0 5px;
+    position: absolute;
+    bottom: 1px;
+    right: 0px;
 }

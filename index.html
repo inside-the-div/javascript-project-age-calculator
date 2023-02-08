@@ -14,16 +14,12 @@
             
             <div id="ageInput" class="container-feild">             
                 <div class="input-group">
-                    <label for="birthDate" class="input-label">Birth Date:</label>
-                    <div>
-                        <input placeholder="From Date" type="date" name="bill" min="0" id="birthDate" class="input-feild">
-                    </div>
+                    <label for="birthDate" class="input-label">Birth Date:</label>                    
+                    <input onchange="FormOnChangeValidation()" placeholder="From Date" type="date" min="0" id="birthDate" class="input-feild">                                       
                 </div>
                 <div class="input-group">
                     <label for="toDate" class="input-label">To Date:</label>
-                    <div>
-                        <input placeholder="To Date" type="date" name="tips" min ="0" id="toDate" max="100" class="input-feild">
-                    </div>
+                    <input onchange="FormOnChangeValidation()" placeholder="To Date" type="date" min ="0" id="toDate" max="100" class="input-feild">
                 </div>
                 
                 <div class="input-group">
