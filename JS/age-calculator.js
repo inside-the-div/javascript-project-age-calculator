@@ -10,7 +10,7 @@ function CalculateResult()
     var resultYear = document.getElementById("resultYear");
     var resultMonth = document.getElementById("resultMonth");
     var resultDay = document.getElementById("resultDay");
-    var year,month,day,totalDay;
+    
 
     if(ProjectFormValidate())
     {
@@ -20,24 +20,96 @@ function CalculateResult()
             document.getElementById("OutputResult").style = "display: flex";
             count++;
         }
-        birthDate = new Date(fromDate);
-        scondDate = new Date(toDate);
-        
-        for(var i = birthDate.getFullYear(); i <= scondDate.getFullYear(); i++)
+        var NoDayRegularMonth = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+        var NoDayLeapMonth = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+        birthDate = new Date(fromDate);        
+        currentDate = new Date(toDate);
+        var BirthYear = birthDate.getFullYear();
+        var CurrentYear = currentDate.getFullYear();
+        var BirthMonth = birthDate.getMonth() + 1;
+        var CurrentMonth = currentDate.getMonth() + 1;
+        var BirthDateDay = birthDate.getDate();
+        var CurrentDay = currentDate.getDate();
+        if (BirthDateDay > CurrentDay)
         {
-            if(LeapYear(i))
+            if (LeapYear(BirthYear))
             {
-                totalLeapYear++;
+                CurrentDay = CurrentDay + NoDayLeapMonth[CurrentMonth - 1];
+                CurrentMonth = CurrentMonth - 1;
+            }
+            else
+            {
+                CurrentDay = CurrentDay + NoDayRegularMonth[CurrentMonth - 1];
+                CurrentMonth = CurrentMonth - 1;
             }
         }
-        debugger
-        totalDay = Math.ceil(Math.abs(birthDate - scondDate)/(1000*60*60*24));
-        year = (totalDay - totalLeapYear)/365;
-        month = (totalDay - (year * 365 + totalLeapYear))/30;
-        day = (totalDay - ((year * 365) + totalLeapYear + (month * 30)));
-        resultYear.innerHTML = year;
-        resultMonth.innerHTML = month;
-        resultDay.innerHTML = day;
+        var  LeapYearCount = 0;
+        for (var i = BirthYear; i <= CurrentYear; i++)
+        {
+            if (LeapYear(i))
+            {
+                if(BirthYear == i)
+                {
+                    if (BirthMonth <= 2)
+                    {
+                        LeapYearCount++;
+                    }
+                }
+                else if (CurrentYear == i)
+                {
+                    if (CurrentMonth >= 3)
+                    {
+                        LeapYearCount++;
+                    }
+                }
+                else
+                {
+                    LeapYearCount++;
+                }                                        
+            }                    
+        }
+
+        if (BirthMonth > CurrentMonth)
+        {
+            CurrentYear = CurrentYear - 1;
+            CurrentMonth = CurrentMonth + 12;
+        }
+        var CalculatedDay = Math.trunc(CurrentDay - BirthDateDay);
+        var CalculatedMonth = Math.trunc(CurrentMonth - BirthMonth);
+        var CalculatedYear = Math.trunc(CurrentYear - BirthYear);
+        var TotalDays = Math.trunc(((CalculatedYear * 365) + CalculatedMonth * 30) + CalculatedDay + LeapYearCount);
+        var TotalMonths = Math.trunc((CalculatedYear * 12) + CalculatedMonth);
+        var TotalWeeks = Math.trunc(TotalDays / 7);
+        var WeekDays = Math.trunc(TotalDays - (TotalWeeks * 7));
+        var TotalHour = Math.trunc(TotalDays * 24);
+        var TotalMinute = Math.trunc(TotalHour * 60);
+        var TotalSecond = Math.trunc(TotalMinute * 60);
+        if(CalculatedYear <= 1)
+        {
+            resultYear.innerHTML = CalculatedYear + " Year";
+        }
+        else
+        {
+            resultYear.innerHTML = CalculatedYear + " Years";
+        }
+
+        if(CalculatedMonth <= 1)
+        {
+            resultMonth.innerHTML = CalculatedMonth + " Month";
+        }
+        else
+        {
+            resultMonth.innerHTML = CalculatedMonth + " Months";
+        }
+
+        if(CalculatedDay <= 1)
+        {
+            resultDay.innerHTML = CalculatedDay + " day";
+        }
+        else
+        {
+            resultDay.innerHTML = CalculatedDay + " days";
+        }     
     }
 }
 
