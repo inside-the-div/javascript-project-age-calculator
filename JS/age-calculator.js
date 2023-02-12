@@ -4,22 +4,15 @@ document.getElementById("OutputResult").style = "display: none";
 document.getElementById("OutputInfo").style = "display: flex";
 function CalculateResult()
 {
-    var count = 0,totalLeapYear = 0;
+    var count = 0;
     var fromDate = document.getElementById("birthDate").value;
     var toDate = document.getElementById("toDate").value;
     var resultYear = document.getElementById("resultYear");
     var resultMonth = document.getElementById("resultMonth");
     var resultDay = document.getElementById("resultDay");
     
-
     if(ProjectFormValidate())
     {
-        if(count == 0)
-        {
-            document.getElementById("OutputInfo").style = "display: none";
-            document.getElementById("OutputResult").style = "display: flex";
-            count++;
-        }
         var NoDayRegularMonth = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
         var NoDayLeapMonth = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
         birthDate = new Date(fromDate);        
@@ -30,6 +23,14 @@ function CalculateResult()
         var CurrentMonth = currentDate.getMonth() + 1;
         var BirthDateDay = birthDate.getDate();
         var CurrentDay = currentDate.getDate();
+        
+        if(count == 0)
+        {
+            document.getElementById("OutputInfo").style = "display: none";
+            document.getElementById("OutputResult").style = "display: flex";
+            count++;
+        }
+        
         if (BirthDateDay > CurrentDay)
         {
             if (LeapYear(BirthYear))
@@ -43,6 +44,7 @@ function CalculateResult()
                 CurrentMonth = CurrentMonth - 1;
             }
         }
+
         var  LeapYearCount = 0;
         for (var i = BirthYear; i <= CurrentYear; i++)
         {
@@ -74,16 +76,18 @@ function CalculateResult()
             CurrentYear = CurrentYear - 1;
             CurrentMonth = CurrentMonth + 12;
         }
+
         var CalculatedDay = Math.trunc(CurrentDay - BirthDateDay);
         var CalculatedMonth = Math.trunc(CurrentMonth - BirthMonth);
         var CalculatedYear = Math.trunc(CurrentYear - BirthYear);
-        var TotalDays = Math.trunc(((CalculatedYear * 365) + CalculatedMonth * 30) + CalculatedDay + LeapYearCount);
-        var TotalMonths = Math.trunc((CalculatedYear * 12) + CalculatedMonth);
-        var TotalWeeks = Math.trunc(TotalDays / 7);
-        var WeekDays = Math.trunc(TotalDays - (TotalWeeks * 7));
-        var TotalHour = Math.trunc(TotalDays * 24);
-        var TotalMinute = Math.trunc(TotalHour * 60);
-        var TotalSecond = Math.trunc(TotalMinute * 60);
+        // var TotalDays = Math.trunc(((CalculatedYear * 365) + CalculatedMonth * 30) + CalculatedDay + LeapYearCount);
+        // var TotalMonths = Math.trunc((CalculatedYear * 12) + CalculatedMonth);
+        // var TotalWeeks = Math.trunc(TotalDays / 7);
+        // var WeekDays = Math.trunc(TotalDays - (TotalWeeks * 7));
+        // var TotalHour = Math.trunc(TotalDays * 24);
+        // var TotalMinute = Math.trunc(TotalHour * 60);
+        // var TotalSecond = Math.trunc(TotalMinute * 60);
+
         if(CalculatedYear <= 1)
         {
             resultYear.innerHTML = CalculatedYear + " Year";
@@ -113,7 +117,8 @@ function CalculateResult()
     }
 }
 
-function ResetAgeCalculator(){
+function ResetAgeCalculator()
+{
     document.getElementById("birthDate").value = "";;
     document.getElementById("toDate").valueAsDate = new Date();
     RemoveAllErrorMessage();
@@ -129,6 +134,7 @@ function IsBirthdateGreterThenTodate()
     }
     return false;
 }
+
 function ProjectFormValidate()
 {
     RemoveAllErrorMessage();
@@ -166,14 +172,7 @@ function LeapYear(BirthYear)
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
         }
-    }
-    else
-    {
-        return false;
-    }
+    }    
+    return false;    
 }
