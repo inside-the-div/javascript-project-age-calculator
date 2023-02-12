@@ -2,6 +2,7 @@
 document.getElementById('toDate').valueAsDate = new Date();
 document.getElementById("OutputResult").style = "display: none";
 document.getElementById("OutputInfo").style = "display: flex";
+
 function CalculateResult()
 {
     var count = 0;
@@ -15,11 +16,13 @@ function CalculateResult()
     {
         var NoDayRegularMonth = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
         var NoDayLeapMonth = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
         birthDate = new Date(fromDate);        
         currentDate = new Date(toDate);
+
         var BirthYear = birthDate.getFullYear();
         var CurrentYear = currentDate.getFullYear();
-        var BirthMonth = birthDate.getMonth() + 1;
+        var BirthMonth = birthDate.getMonth() + 1; 
         var CurrentMonth = currentDate.getMonth() + 1;
         var BirthDateDay = birthDate.getDate();
         var CurrentDay = currentDate.getDate();
@@ -80,13 +83,6 @@ function CalculateResult()
         var CalculatedDay = Math.trunc(CurrentDay - BirthDateDay);
         var CalculatedMonth = Math.trunc(CurrentMonth - BirthMonth);
         var CalculatedYear = Math.trunc(CurrentYear - BirthYear);
-        // var TotalDays = Math.trunc(((CalculatedYear * 365) + CalculatedMonth * 30) + CalculatedDay + LeapYearCount);
-        // var TotalMonths = Math.trunc((CalculatedYear * 12) + CalculatedMonth);
-        // var TotalWeeks = Math.trunc(TotalDays / 7);
-        // var WeekDays = Math.trunc(TotalDays - (TotalWeeks * 7));
-        // var TotalHour = Math.trunc(TotalDays * 24);
-        // var TotalMinute = Math.trunc(TotalHour * 60);
-        // var TotalSecond = Math.trunc(TotalMinute * 60);
 
         if(CalculatedYear <= 1)
         {
@@ -124,20 +120,10 @@ function ResetAgeCalculator()
     RemoveAllErrorMessage();
 }
 
-function IsBirthdateGreterThenTodate()
-{
-    var birthDate = new Date(document.getElementById("birthDate").value);
-    var toDate = new Date(document.getElementById("toDate").value);
-    if(birthDate>toDate)
-    {
-        return true;
-    }
-    return false;
-}
-
 function ProjectFormValidate()
 {
     RemoveAllErrorMessage();
+
     if(IsInputFieldEmpty("birthDate"))
     {
         ShowErrorMessageBottomOfTheInputFiled("birthDate", "Please enter valid date.");
@@ -150,11 +136,15 @@ function ProjectFormValidate()
         return false;
     }
 
-    if(IsBirthdateGreterThenTodate())
+    var birthDate = new Date(document.getElementById("birthDate").value);
+    var toDate = new Date(document.getElementById("toDate").value);
+
+    if(IsFromDateGreterThanTodate(birthDate, toDate))
     {
-        ShowErrorMessageBottomOfTheInputFiled("toDate", "Enter valid todate.");
+        ShowErrorMessageBottomOfTheInputFiled("toDate", "Enter valid date.");
         return false;
     }
+
     return true;
 }
 
@@ -173,6 +163,20 @@ function LeapYear(BirthYear)
                 return true;
             }
         }
-    }    
+    }  
+
     return false;    
+}
+
+
+function IsFromDateGreterThanTodate(FromDate, Todate){
+    var FromDate = new Date(FromDate);
+    var Todate = new Date(Todate);
+
+    if(FromDate > Todate)
+    {
+        return true;
+    }
+
+    return false;
 }

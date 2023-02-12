@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Css/common.css">
+
+    <meta name = "keywords" content = "" />
+    <meta name = "description" content = "" />
+
+    <link rel="stylesheet" href="css/common.css">
     <title>Age Calculator</title>
 </head>
 <body>
@@ -15,11 +19,11 @@
             <div id="ageInput" class="container-feild">             
                 <div class="input-group">
                     <label for="birthDate" class="input-label">Birth Date:</label>                    
-                    <input placeholder="From Date" type="date" min="0" id="birthDate" class="input-feild">                                       
+                    <input placeholder="From Date" type="date" id="birthDate" class="input-feild">                                       
                 </div>
                 <div class="input-group">
                     <label for="toDate" class="input-label">To Date:</label>
-                    <input placeholder="To Date" type="date" min ="0" id="toDate" max="100" class="input-feild">
+                    <input placeholder="To Date" type="date" id="toDate" class="input-feild">
                 </div>
                 
                 <div class="input-group">
@@ -31,7 +35,7 @@
             <div id="ageOutput" class="container-feild">         
                 <div id="OutputInfo" class="output-information output-box">                     
                      <ul>
-                        <li>To date can not be older than birth date</li>
+                        <li>The <b>To Date</b> can not be older than the <b>Birth Date.</b></li>
                     </ul>                                     
                  </div>
                  <div id="OutputResult" class="output-results output-box">
@@ -54,7 +58,7 @@
             <p>Develop By <i><a href="#">Kamrul Hasan</a></i> & Powered By <i><a href="#">Bx-Coder</a></i></p>
         </div> 
     </div>
-    <script src="JS/project-common-js.js"></script>
-    <script src="JS/age-calculator.js"></script>  
+    <script src="js/project-common-js.js"></script>
+    <script src="js/age-calculator.js"></script>  
 </body>
 </html>
