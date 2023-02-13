@@ -34,3 +34,22 @@ function IsInputFieldEmpty(feildId)
     }
     return false;
 }
+
+function LeapYear(BirthYear)
+{
+    if (BirthYear % 4 == 0)
+    {
+        if (BirthYear % 100 != 0)
+        {
+            return true;
+        }
+        else
+        {
+            if (BirthYear % 400 == 0)
+            {
+                return true;
+            }
+        }
+    }
+    return false;    
+}

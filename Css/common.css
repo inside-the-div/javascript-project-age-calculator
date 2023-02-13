@@ -171,14 +171,14 @@
 .author-intro{
     display: flex;
     justify-content: center;
-    color: darkgray;
+    color: #5A5A5A;
 }
 .author-intro p{
     margin: 5px;
 }
 .author-intro a{
     text-decoration: none;
-    color: darkgray;
+    color: #5A5A5A;
 }
 .error-border{
     border: 2px solid red;
