@@ -1,10 +1,11 @@
 ///set today's date as toDate
 document.getElementById('toDate').valueAsDate = new Date();
-document.getElementById("OutputResult").style = "display: none";
-document.getElementById("OutputInfo").style = "display: flex";
+_cmnHideElement("OutputResult");
 
 function CalculateResult()
 {
+  _cmnHideElement('OutputInfo');
+  _cmnShowElement('OutputResult','flex');
     var count = 0;
     var fromDate = document.getElementById("birthDate").value;
     var toDate = document.getElementById("toDate").value;
@@ -17,8 +18,10 @@ function CalculateResult()
       const birthDate = new Date(1996, 5, 27);
       const currentDate = new Date();
       const age = calculateAccurateAge(birthDate, currentDate);
-    }   
+    }  
 
+    _cmnHideElement("OutputInfo");
+    _cmnShowElement("OutputResult", "flex");
 }
 
 function calculateAccurateAge(birthDate, currentDate) {
@@ -49,7 +52,11 @@ function ResetAgeCalculator()
 {
     document.getElementById("birthDate").value = "";;
     document.getElementById("toDate").valueAsDate = new Date();
+    
     RemoveAllErrorMessage();
+
+    _cmnHideElement("OutputResult");
+    _cmnShowElement("OutputInfo", "flex");
 }
 
 function ProjectFormValidate()
