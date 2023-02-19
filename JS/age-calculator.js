@@ -30,11 +30,11 @@ function calculateAccurateAge(birthDate, currentDate) {
     let years = ageDate.getUTCFullYear() - 1970;
     let months = ageDate.getUTCMonth();
     let days = ageDate.getUTCDate() - 1;
-    let leapYears = 0;
+    let _cmnLeapYears = 0;
   
     for (let i = birthDate.getUTCFullYear(); i <= currentDate.getUTCFullYear(); i++) {
-      if (LeapYear(i)) {
-        leapYears++;
+      if (_cmnLeapYear(i)) {
+        _cmnLeapYears++;
       }
     }
     let totalDays = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24));
@@ -44,7 +44,7 @@ function calculateAccurateAge(birthDate, currentDate) {
       months: months,
       days: days,
       totalDays: totalDays,
-      leapYears: leapYears
+      _cmnLeapYears: _cmnLeapYears
     };
   }
   
@@ -53,7 +53,7 @@ function ResetAgeCalculator()
     document.getElementById("birthDate").value = "";;
     document.getElementById("toDate").valueAsDate = new Date();
     
-    RemoveAllErrorMessage();
+    _cmnRemoveAllErrorMessage();
 
     _cmnHideElement("OutputResult");
     _cmnShowElement("OutputInfo", "flex");
@@ -61,17 +61,17 @@ function ResetAgeCalculator()
 
 function ProjectFormValidate()
 {
-    RemoveAllErrorMessage();
+    _cmnRemoveAllErrorMessage();
 
-    if(IsInputFieldEmpty("birthDate"))
+    if(_cmnIsInputFieldEmpty("birthDate"))
     {
-        ShowErrorMessageBottomOfTheInputFiled("birthDate", "Please enter valid date.");
+        _cmnShowErrorMessageBottomOfTheInputFiled("birthDate", "Please enter valid date.");
         return false;
     }
     
-    if(IsInputFieldEmpty("toDate"))
+    if(_cmnIsInputFieldEmpty("toDate"))
     {
-        ShowErrorMessageBottomOfTheInputFiled("toDate", "Please enter valid date.");
+        _cmnShowErrorMessageBottomOfTheInputFiled("toDate", "Please enter valid date.");
         return false;
     }
 
@@ -80,7 +80,7 @@ function ProjectFormValidate()
 
     if(IsFromDateGreterThanTodate(birthDate, toDate))
     {
-        ShowErrorMessageBottomOfTheInputFiled("toDate", "Enter valid date.");
+        _cmnShowErrorMessageBottomOfTheInputFiled("toDate", "Enter valid date.");
         return false;
     }
 
